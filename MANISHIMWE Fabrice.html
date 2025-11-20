@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FabPortfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap" rel="stylesheet">
+<style>
+/* Reset & Base */
+* { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
+body { font-family: 'Roboto', sans-serif; background: #F0F0F0; color: #1E1E2F; line-height: 1.6; scroll-behavior: smooth; }
+a { text-decoration: none; color: inherit; }
+
+/* Hero */
+.hero { 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  background: linear-gradient(135deg, #1E1E2F 0%, #FF6B6B 100%);
+  color: #fff;
+  text-align: center;
+  padding: 0 20px;
+}
+.hero h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; margin-bottom: 10px; }
+.hero p { font-size: 1.2rem; margin-bottom: 20px; }
+.hero button { 
+  padding: 10px 20px; font-size: 1rem; border: none; 
+  background: #fff; color: #FF6B6B; cursor: pointer; border-radius: 5px; 
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hero button:hover { transform: scale(1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+/* About */
+.about { padding: 60px 20px; max-width: 900px; margin: auto; }
+.about h2 { font-family: 'Poppins', sans-serif; margin-bottom: 20px; font-size: 2rem; color: #FF6B6B; }
+.about p { font-size: 1.1rem; margin-bottom: 10px; }
+
+/* Projects */
+.projects { padding: 60px 20px; max-width: 1000px; margin: auto; }
+.projects h2 { font-family: 'Poppins', sans-serif; margin-bottom: 20px; font-size: 2rem; color: #FF6B6B; text-align: center;}
+.project-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.project-card { background: #fff; padding: 20px; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.project-card h3 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; color: #1E1E2F; }
+.project-card p { font-size: 0.95rem; color: #555; }
+
+/* Skills */
+.skills { padding: 60px 20px; max-width: 800px; margin: auto; }
+.skills h2 { font-family: 'Poppins', sans-serif; margin-bottom: 30px; font-size: 2rem; color: #FF6B6B; text-align: center; }
+.skill { margin-bottom: 20px; }
+.skill span { display: block; margin-bottom: 5px; font-weight: 500; }
+.skill-bar { background: #ddd; border-radius: 20px; overflow: hidden; }
+.skill-fill { 
+  background: #ED1D24; /* Marvel Red */ 
+  height: 20px; 
+  width: 0; 
+  border-radius: 20px; 
+  transition: width 1.5s ease-in-out; 
+}
+
+/* Contact */
+.contact { padding: 60px 20px; max-width: 600px; margin: auto; text-align: center; }
+.contact h2 { font-family: 'Poppins', sans-serif; margin-bottom: 20px; font-size: 2rem; color: #FF6B6B; }
+.contact form { display: flex; flex-direction: column; gap: 15px; }
+.contact input, .contact textarea { padding: 10px; border-radius: 5px; border: 1px solid #ccc; background: #fff; color: #1E1E2F; }
+.contact button { padding: 10px; border: none; background: #FF6B6B; color: #fff; cursor: pointer; border-radius: 5px; transition: transform 0.3s; }
+.contact button:hover { transform: scale(1.05); }
+
+/* Footer */
+footer { text-align: center; padding: 20px; background: #1E1E2F; color: #fff; }
+
+/* Dark Mode Styles */
+body.dark-mode { background: #1E1E2F; color: #F0F0F0; }
+body.dark-mode .about p, body.dark-mode .project-card p, body.dark-mode .contact input, body.dark-mode .contact textarea { color: #F0F0F0; }
+body.dark-mode .project-card { background: #2C2C2C; }
+body.dark-mode .skill-bar { background: #444; }
+
+/* Toggle Button */
+.toggle-btn {
+  position: fixed; top: 20px; right: 20px; background: #FF6B6B; color: #fff; border: none; padding: 10px 15px;
+  border-radius: 5px; cursor: pointer; z-index: 1000; transition: transform 0.3s;
+}
+.toggle-btn:hover { transform: scale(1.1); }
+
+/* Fade-in animation */
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+.fade-in { animation: fadeIn 1.5s ease-in-out; }
+</style>
+</head>
+<body>
+
+<!-- Dark Mode Toggle -->
+<button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+<!-- Hero -->
+<section class="hero fade-in">
+  <h1>Hey! I'm Fab</h1>
+  <p>A self-taught web developer from Rwanda, turning ideas into real websites that work & look cool.</p>
+  <button onclick="document.querySelector('.about').scrollIntoView({behavior:'smooth'})">Know More</button>
+</section>
+
+<!-- About -->
+<section class="about fade-in">
+  <h2>About Me</h2>
+  <p>I love building websites that solve real problems. Coding isn’t just a skill for me, it’s my way to create, learn, and share with the world.</p>
+  <p>When I’m not coding, I explore tech trends, watch sci-fi movies, and plan my next big project.</p>
+</section>
+
+<!-- Projects -->
+<section class="projects fade-in">
+  <h2>My Projects</h2>
+  <div class="project-cards">
+    <div class="project-card">
+      <h3>Weather App</h3>
+      <p>Built to learn API integration. Simple design but taught me a lot about JavaScript.</p>
+    </div>
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>This website itself! Personalized design, interactive cards, smooth scroll — fully hand-coded.</p>
+    </div>
+    <div class="project-card">
+      <h3>Todo App</h3>
+      <p>Helps users track daily tasks with local storage. Fun project to explore DOM manipulation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="skills fade-in">
+  <h2>Check My Work</h2>
+  <div class="skill">
+    <span>HTML & CSS</span>
+    <div class="skill-bar">
+      <div class="skill-fill" data-width="90%"></div>
+    </div>
+  </div>
+  <div class="skill">
+    <span>JavaScript</span>
+    <div class="skill-bar">
+      <div class="skill-fill" data-width="75%"></div>
+    </div>
+  </div>
+  <div class="skill">
+    <span>React</span>
+    <div class="skill-bar">
+      <div class="skill-fill" data-width="60%"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact fade-in">
+  <h2>Contact Me</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 FabPortfolio | Made with ❤️
+</footer>
+
+<script>
+// Dark Mode Toggle
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+
+// Animate skill bars on scroll
+window.addEventListener('scroll', () => {
+  const skills = document.querySelectorAll('.skill-fill');
+  skills.forEach(skill => {
+    const skillTop = skill.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if(skillTop < windowHeight - 50){
+      skill.style.width = skill.getAttribute('data-width');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
